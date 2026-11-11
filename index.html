@@ -1,97 +1,70 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geocaching Hint</title>
-    <style>
-        html {
-            height: 100%;
+<!DOCTYPE html><html lang="de" class="dark"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>GCC02.de - Hints</title>    <script src="https://cdn.tailwindcss.com"></script>    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">    <style>        body {            background-color: #030305;            color: #d1d5db;            font-family: 'Cinzel', serif;            overflow-x: hidden;            background-image:                 radial-gradient(circle at 50% 20%, rgba(153, 27, 27, 0.25) 0%, transparent 60%),                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);        }        /* Custom scrollbar */        ::-webkit-scrollbar {            width: 8px;        }        ::-webkit-scrollbar-track {            background: #030305;        }        ::-webkit-scrollbar-thumb {            background: #1f1912;            border: 1px solid #d4af37;            border-radius: 4px;        }        ::-webkit-scrollbar-thumb:hover {            background: #991b1b;        }        /* Mystical Glowing Effects */        .occult-glow {            text-shadow: 0 0 12px rgba(153, 27, 27, 0.9), 0 0 30px rgba(212, 175, 55, 0.6), 0 0 50px rgba(153, 27, 27, 0.4);        }        .seal-glow {            box-shadow: 0 0 50px rgba(153, 27, 27, 0.9), 0 0 20px rgba(212, 175, 55, 0.6), inset 0 0 35px rgba(212, 175, 55, 0.5);        }        /* Slow rotating rune circle background */        @keyframes rotate-slow {            from { transform: rotate(0deg); }            to { transform: rotate(360deg); }        }        @keyframes rotate-reverse {            from { transform: rotate(360deg); }            to { transform: rotate(0deg); }        }        .spin-slow {            animation: rotate-slow 90s linear infinite;        }        .spin-reverse {            animation: rotate-reverse 120s linear infinite;        }        /* Gate animations & styles */        #gate-overlay {            perspective: 2000px;            transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.6s ease-in-out;        }        .gate-door-left, .gate-door-right {            transition: transform 2.8s cubic-bezier(0.77, 0, 0.175, 1);            background:                 linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(20,15,22,0.95) 50%, rgba(5,3,6,0.9) 100%),                radial-gradient(circle at center, #18111a 0%, #080509 75%, #020103 100%);            border: 10px solid #140f0c;            box-shadow: inset 0 0 120px rgba(0,0,0,0.98), 0 0 60px rgba(0,0,0,0.95);        }        .gate-door-left {            transform-origin: left center;        }        .gate-door-right {            transform-origin: right center;        }        .gate-open .gate-door-left {            transform: rotateY(-118deg);        }        .gate-open .gate-door-right {            transform: rotateY(118deg);        }        .gate-open {            opacity: 0 !important;            visibility: hidden !important;            pointer-events: none !important;        }        /* Torch Flame Flicker animation */        @keyframes flicker {            0%, 100% { opacity: 0.75; filter: drop-shadow(0 0 15px rgba(212,175,55,0.8)); transform: scale(1); }            25% { opacity: 0.95; filter: drop-shadow(0 0 30px rgba(185,28,28,0.95)); transform: scale(1.05); }            50% { opacity: 0.65; filter: drop-shadow(0 0 10px rgba(212,175,55,0.5)); transform: scale(0.97); }            75% { opacity: 1; filter: drop-shadow(0 0 35px rgba(212,175,55,1)); transform: scale(1.08); }        }        .flicker {            animation: flicker 3.2s infinite ease-in-out;        }        /* Whispering Text Glow */        @keyframes pulse-glow {            0%, 100% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }            50% { text-shadow: 0 0 28px rgba(185, 28, 28, 0.9), 0 0 40px rgba(212, 175, 55, 0.7); }        }        .whisper-glow {            animation: pulse-glow 4.5s infinite ease-in-out;        }        /* Parchment link for Hints */        .parchment-link {            background: linear-gradient(135deg, #1c150c 0%, #2a1f12 50%, #150f08 100%);            color: #d4af37;            border: 1px solid #785a22;            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 15px rgba(212, 175, 55, 0.15);            transition: all 0.4s ease;        }        .parchment-link:hover {            transform: translateY(-3px) scale(1.03);            box-shadow: 0 6px 25px rgba(153, 27, 27, 0.4), 0 0 25px rgba(212, 175, 55, 0.4);            border-color: #d4af37;            color: #fff;        }        /* Gothic Pillars Frame */        .gothic-pillar {            background: linear-gradient(180deg, #1a1512 0%, #0d0a08 50%, #050403 100%);            border-color: #2e2217;            box-shadow: inset 0 0 30px #000, 0 0 30px rgba(0,0,0,0.9);        }    </style>
+    <script>
+        function openSanctuary() {
+            const overlay = document.getElementById('gate-overlay');
+            if (overlay) {
+                overlay.classList.add('gate-open');
+            }
         }
-
-        body {
-            background-color: #030305;
-            color: #d1d5db;
-            font-family: 'Cinzel', serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-image: 
-                radial-gradient(circle at 50% 20%, rgba(220, 38, 38, 0.5) 0%, transparent 75%),
-                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between selection:bg-red-900 selection:text-amber-200 relative">    <!-- Ambient Floating Pentagram Background Decorative Element -->    <div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center opacity-10 overflow-hidden">        <svg class="w-[850px] h-[850px] text-amber-600 spin-slow" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.3">            <circle cx="50" cy="50" r="48"></circle>            <circle cx="50" cy="50" r="44" stroke-dasharray="1 2"></circle>            <polygon points="50,2 63,38 100,38 69,60 82,98 50,75 18,98 31,60 0,38 37,38"></polygon>        </svg>    </div>    <!-- INTRO GATE SCREEN (SUPER IMPOSING GOTHIC PORTAL) -->    <div id="gate-overlay" class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black select-none">        <!-- Dark Mystical Fog & Red Glow -->        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-950/60 via-black to-black opacity-95"></div>                <!-- Outer Runes Frame Wall -->        <div class="absolute inset-2 sm:inset-6 border-2 border-amber-900/30 pointer-events-none flex flex-col justify-between p-4 z-10">            <div class="flex justify-between text-amber-600/40 text-xl sm:text-2xl font-medieval tracking-[0.3em]">                <span>ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ</span>                <span>ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ</span>            </div>            <div class="flex justify-between text-amber-600/40 text-xl sm:text-2xl font-medieval tracking-[0.3em]">                <span>ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ</span>                <span>ᛞ ᛟ ᛤ ᛥ ᛦ ᛨ ᛩ</span>            </div>        </div>        <!-- Heavy Gothic Portal Frame Architecture -->        <div class="relative w-full max-w-6xl h-[92vh] flex items-center justify-center z-20 px-2 sm:px-6">                        <!-- Left Gothic Stone Pillar -->            <div class="hidden sm:flex flex-col justify-between h-full w-14 lg:w-20 gothic-pillar border-r-2 border-amber-900/40 z-30 relative py-6 items-center">                <div class="w-8 h-8 rounded-full border border-amber-800/50 flex items-center justify-center text-amber-600/60 text-xs">ᛟ</div>                <div class="h-full w-0.5 bg-gradient-to-b from-transparent via-amber-900/40 to-transparent my-4"></div>                <!-- Torch Light Left -->                <div class="w-6 h-6 rounded-full bg-amber-500/20 flicker border border-amber-500/60 flex items-center justify-center">                    <div class="w-3 h-3 rounded-full bg-red-600"></div>                </div>                <div class="h-full w-0.5 bg-gradient-to-b from-transparent via-amber-900/40 to-transparent my-4"></div>                <div class="w-8 h-8 rounded-full border border-amber-800/50 flex items-center justify-center text-amber-600/60 text-xs">ᛗ</div>            </div>            <!-- Main Portal Arc & Massive Doors Container -->            <div id="gate-container" class="relative w-full h-full flex z-20 border-t-8 border-b-8 border-amber-950 shadow-[0_0_120px_rgba(0,0,0,1)] rounded-t-3xl overflow-hidden">                                <!-- Pointed Arch Header Overlay Artwork -->                <div class="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black via-stone-950 to-transparent z-40 flex items-center justify-center border-b border-amber-900/30">                    <span class="text-amber-700/60 text-xs sm:text-sm font-medieval tracking-[0.4em] uppercase">Ein 4Lanfis Mystery-Geocache</span>                </div>                <!-- Left Gate Door -->                <div class="gate-door gate-door-left w-1/2 h-full relative flex items-center justify-end overflow-hidden border-r-4 border-amber-950">                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#d4af37_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>                    <div class="absolute inset-y-0 left-0 w-full flex flex-col justify-around py-12 opacity-40 pointer-events-none">                        <div class="h-6 w-full bg-gradient-to-r from-amber-950 via-neutral-900 to-amber-950 border-y border-amber-800/60 flex justify-around items-center">                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                        </div>                        <div class="h-6 w-full bg-gradient-to-r from-amber-950 via-neutral-900 to-amber-950 border-y border-amber-800/60 flex justify-around items-center">                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                        </div>                    </div>                    <div class="absolute right-4 sm:right-12 w-20 h-36 rounded-full border-4 border-amber-900/90 flex items-center justify-center shadow-[0_0_25px_rgba(0,0,0,0.95)] bg-black/60">                        <div class="w-10 h-18 rounded-full border-2 border-amber-700/80"></div>                    </div>                </div>                <!-- Right Gate Door -->                <div class="gate-door gate-door-right w-1/2 h-full relative flex items-center justify-start overflow-hidden border-l-4 border-amber-950">                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#d4af37_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>                    <div class="absolute inset-y-0 right-0 w-full flex flex-col justify-around py-12 opacity-40 pointer-events-none">                        <div class="h-6 w-full bg-gradient-to-r from-amber-950 via-neutral-900 to-amber-950 border-y border-amber-800/60 flex justify-around items-center">                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                        </div>                        <div class="h-6 w-full bg-gradient-to-r from-amber-950 via-neutral-900 to-amber-950 border-y border-amber-800/60 flex justify-around items-center">                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                            <div class="w-2 h-2 rounded-full bg-amber-700"></div>                        </div>                    </div>                    <div class="absolute left-4 sm:left-12 w-20 h-36 rounded-full border-4 border-amber-900/90 flex items-center justify-center shadow-[0_0_25px_rgba(0,0,0,0.95)] bg-black/60">                        <div class="w-10 h-18 rounded-full border-2 border-amber-700/80"></div>                    </div>                </div>                <!-- Central Arcane Seal Button Overlay -->                <div class="absolute inset-0 flex flex-col items-center justify-start pt-12 sm:pt-16 pointer-events-none z-30">                    <div class="text-center px-4 pointer-events-auto flex flex-col items-center">                        <button id="gate-button" onclick="openSanctuary()" class="group relative inline-flex items-center justify-center p-1.5 overflow-hidden rounded-full font-cinzel text-white focus:outline-none transition-transform active:scale-95 cursor-pointer">                            <span class="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 via-amber-500 to-red-700 opacity-60 group-hover:opacity-100 blur-md transition-opacity duration-500"></span>                                                        <span class="relative px-4 py-4 sm:px-5 sm:py-5 transition-all ease-in duration-300 bg-gradient-to-b from-black via-red-950 to-stone-950 rounded-full flex flex-col items-center justify-center border-2 border-amber-600/90 group-hover:border-amber-300 seal-glow">                                <svg class="absolute inset-0 w-full h-full text-amber-500/40 spin-slow pointer-events-none p-1" viewBox="0 0 100 100" fill="none" stroke="currentColor">                                    <circle cx="50" cy="50" r="46" stroke-dasharray="3 3" stroke-width="1.5"></circle>                                </svg>                                                                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-amber-500 group-hover:text-amber-200 transition-all duration-500 flicker mb-1 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 1"></circle>                                </svg>                                <span class="tracking-[0.25em] text-[9px] sm:text-[11px] font-bold text-amber-400 group-hover:text-amber-100 uppercase whisper-glow relative z-10">Tritt ein                                </span>                            </span>                        </button>                    </div>                </div>            </div>            <!-- Right Gothic Stone Pillar -->            <div class="hidden sm:flex flex-col justify-between h-full w-14 lg:w-20 gothic-pillar border-l-2 border-amber-900/40 z-30 relative py-6 items-center">                <div class="w-8 h-8 rounded-full border border-amber-800/50 flex items-center justify-center text-amber-600/60 text-xs">ᛉ</div>                <div class="h-full w-0.5 bg-gradient-to-b from-transparent via-amber-900/40 to-transparent my-4"></div>                <div class="w-6 h-6 rounded-full bg-amber-500/20 flicker border border-amber-500/60 flex items-center justify-center">                    <div class="w-3 h-3 rounded-full bg-red-600"></div>                </div>                <div class="h-full w-0.5 bg-gradient-to-b from-transparent via-amber-900/40 to-transparent my-4"></div>                <div class="w-8 h-8 rounded-full border border-amber-800/50 flex items-center justify-center text-amber-600/60 text-xs">ᛏ</div>            </div>        </div>        <!-- GCC02.de Title positioned lower on screen -->        <div class="absolute bottom-6 sm:bottom-10 inset-x-0 z-30 flex justify-center pointer-events-none">            <h1 class="text-3xl sm:text-6xl font-black text-amber-500 tracking-[0.35em] font-medieval occult-glow pointer-events-auto">GCC02.de - Hints</h1>        </div>    </div>    <!-- MAIN CONTENT (Sanctuary with Text Area & Certitude Checker) -->    <main class="relative z-10 container mx-auto px-4 py-8 max-w-5xl flex-grow flex flex-col justify-between items-center">                <!-- Header Title -->        <header class="text-center my-6">            <h1 class="text-4xl sm:text-6xl font-black text-amber-500 tracking-[0.3em] font-medieval occult-glow mb-2">GCC02.de - Hints</h1>            <p class="text-xs sm:text-sm text-red-700/80 tracking-[0.4em] uppercase font-semibold whisper-glow">᚛ MYSTERY-GEOCACHE ᚜</p>        </header>        <!-- Huge Transparent Occult Container with Structured Hints -->        <div class="w-full relative my-4 group">            <div class="absolute -inset-1 bg-gradient-to-r from-red-900/40 via-amber-600/30 to-red-900/40 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition duration-1000"></div>                        <div class="relative bg-black/40 backdrop-blur-md rounded-xl border border-amber-900/40 p-6 sm:p-10 shadow-[0_0_50px_rgba(0,0,0,0.9)] text-amber-100 font-cinzel leading-relaxed">                
+                <!-- INDOOR -->
+                <div class="mb-8 border-b border-amber-900/30 pb-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-red-500 tracking-widest font-medieval mb-3 flex items-center gap-2">
+                        <span>INDOOR</span>
+                    </h2>
+                    <ul class="space-y-2 text-sm sm:text-base text-amber-200/90 pl-2">
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-600 font-bold text-lg select-none">†</span>
+                            <span>Der gnadenlose Certitudes-Checker verlangt, dass alles – ohne Gnade und ohne ein einziges winziges Leerzeichen – in einem einzigen Wort zusammengeschrieben wird!</span>
+                        </li>
+                    </ul>
+                </div>
 
-<div style="max-width: 650px; margin: 20px auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: rgba(35, 10, 12, 0.45); color: #f3f4f6; border: 2px solid rgba(220, 38, 38, 0.7); border-radius: 12px; padding: 25px; box-shadow: 0 0 25px rgba(220, 38, 38, 0.35), inset 0 0 15px rgba(239, 68, 68, 0.15); backdrop-filter: blur(8px); line-height: 1.6;">
+                <!-- OUTDOOR -->
+                <div class="mb-8 border-b border-amber-900/30 pb-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-amber-500 tracking-widest font-medieval mb-3 flex items-center gap-2">
+                        <span>OUTDOOR</span>
+                    </h2>
+                    <ul class="space-y-3 text-sm sm:text-base text-amber-200/90 pl-2">
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-500 font-bold text-lg select-none">†</span>
+                            <span>Mache den Outdoor-Teil nur bei Tageslicht, ein zusätzliches Licht schadet nicht!</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-500 font-bold text-lg select-none">†</span>
+                            <span>Achte beim Bergen der Dose wie ein Luchs darauf, dass sie nicht verloren geht.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-red-400">
+                            <span class="text-red-500 font-bold text-lg select-none">†</span>
+                            <span>Die Terrain-Wertung steigt bei schlechtem Schuhwerk und widrigem Wetter um jeweils unbarmherzige 0,5 an!</span>
+                        </li>
+                    </ul>
+                </div>
 
-  <style>
-    @keyframes fireGlow {
-      0% { text-shadow: 0 0 4px #fff, 0 -2px 6px #ffb700, 0 -6px 12px #ff4500, 0 -10px 18px #d00000; }
-      50% { text-shadow: 0 0 6px #fff, 0 -4px 10px #ffd700, 0 -9px 16px #ff3300, 0 -14px 24px #990000; }
-      100% { text-shadow: 0 0 4px #fff, 0 -2px 6px #ffb700, 0 -6px 12px #ff4500, 0 -10px 18px #d00000; }
-    }
-  </style>
+                <!-- EQUIPMENT -->
+                <div class="mb-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-amber-400 tracking-widest font-medieval mb-3 flex items-center gap-2">
+                        <span>EQUIPMENT</span>
+                    </h2>
+                    <ul class="space-y-3 text-sm sm:text-base text-amber-200/90 pl-2">
+                        <li class="flex items-start gap-3">
+                            <span class="text-amber-400 font-bold text-lg select-none">†</span>
+                            <span>Festes Schuhwerk</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-red-950/40 border border-red-900/50 p-3 rounded-lg shadow-inner">
+                            <span class="text-amber-400 font-bold text-lg select-none">†</span>
+                            <span class="font-bold text-amber-100">Die zuvor herausgefundene dreistellige Zahlenkombination unbedingt mitnehmen!</span>
+                        </li>
+                    </ul>
+                </div>
 
-  <!-- FIRE TITLE -->
-  <h2 style="margin-top: 0; color: #fff; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.5); padding-bottom: 14px; font-size: 1.8em; letter-spacing: 2px; text-transform: uppercase; animation: fireGlow 2s infinite alternate;">
-    🔥 GCC02.de - Hints 🔥
-  </h2>
-
-  <!-- INDOOR SECTION -->
-  <div style="margin-bottom: 20px; background: rgba(185, 28, 28, 0.12); border-left: 4px solid #ef4444; border-radius: 0 8px 8px 0; padding: 12px 16px;">
-    <strong style="color: #fca5a5; font-size: 1.1em; letter-spacing: 0.5px;">INDOOR</strong>
-    <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
-      <li style="margin-bottom: 6px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #ef4444; font-weight: bold;">†</span>
-        Der gnadenlose Certitudes-Checker verlangt, dass alles – ohne Gnade und ohne ein einziges winziges Leerzeichen – in einem einzigen Wort zusammengeschrieben wird!
-      </li>
-    </ul>
-  </div>
-
-  <!-- OUTDOOR SECTION -->
-  <div style="margin-bottom: 20px; background: rgba(185, 28, 28, 0.12); border-left: 4px solid #f97316; border-radius: 0 8px 8px 0; padding: 12px 16px;">
-    <strong style="color: #fdba74; font-size: 1.1em; letter-spacing: 0.5px;">OUTDOOR</strong>
-    <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
-      <li style="margin-bottom: 8px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #f97316; font-weight: bold;">†</span>
-        Mache den Outdoor-Teil nur bei Tageslicht, ein zusätzliches Licht schadet nicht!
-      </li>
-      <li style="margin-bottom: 8px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #f97316; font-weight: bold;">†</span>
-        Achte beim Bergen der Dose wie ein Luchs darauf, dass sie nicht verloren geht.
-      </li>
-      <li style="margin-bottom: 6px; position: relative; padding-left: 22px; color: #fca5a5;">
-        <span style="position: absolute; left: 0; color: #ef4444; font-weight: bold;">†</span>
-        Die Terrain-Wertung steigt bei schlechtem Schuhwerk und widrigem Wetter um jeweils unbarmherzige 0,5 an!
-      </li>
-    </ul>
-  </div>
-
-  <!-- EQUIPMENT SECTION -->
-  <div style="margin-bottom: 20px; background: rgba(185, 28, 28, 0.12); border-left: 4px solid #eab308; border-radius: 0 8px 8px 0; padding: 12px 16px;">
-    <strong style="color: #fde047; font-size: 1.1em; letter-spacing: 0.5px;">EQUIPMENT</strong>
-    <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
-      <li style="margin-bottom: 8px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #eab308; font-weight: bold;">†</span>
-        Festes Schuhwerk
-      </li>
-      <li style="margin-bottom: 6px; position: relative; padding-left: 22px; background: rgba(239, 68, 68, 0.25); padding-top: 4px; padding-bottom: 4px; border-radius: 4px; border: 1px solid rgba(239, 68, 68, 0.4);">
-        <span style="position: absolute; left: 6px; color: #fde047; font-weight: bold;">†</span>
-        <b style="color: #fff;">Die zuvor herausgefundene dreistellige Zahlenkombination unbedingt mitnehmen!</b>
-      </li>
-    </ul>
-  </div>
-
-  <!-- FOOTER -->
-  <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px dashed rgba(239, 68, 68, 0.4); font-style: italic; color: #fca5a5; font-size: 0.9em;">
-    † Weitere spannende Hints folgen... ??
-  </div>
-
-</div>
-</body>
-</html>
+                <!-- FOOTER HINT -->
+                <div class="mt-8 pt-4 text-center border-t border-amber-900/20 text-xs sm:text-sm text-amber-600/70 italic tracking-wider">
+                    † Weitere spannende Hints folgen...
+                </div>
+            </div>
+        </div>
+    </main>
+</body></html>
