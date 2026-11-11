@@ -27,63 +27,71 @@
 </head>
 <body>
 
-<div style="max-width: 650px; margin: 20px auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #1a1e24; color: #e0e6ed; border: 1px solid #2d3748; border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); line-height: 1.6;">
+<div style="max-width: 650px; margin: 20px auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: rgba(35, 10, 12, 0.45); color: #f3f4f6; border: 2px solid rgba(220, 38, 38, 0.7); border-radius: 12px; padding: 25px; box-shadow: 0 0 25px rgba(220, 38, 38, 0.35), inset 0 0 15px rgba(239, 68, 68, 0.15); backdrop-filter: blur(8px); line-height: 1.6;">
 
-  <h2 style="margin-top: 0; color: #4fd1c5; text-align: center; border-bottom: 2px solid #2d3748; padding-bottom: 12px; font-size: 1.6em; letter-spacing: 1px; text-transform: uppercase;">
-    GCC02.de - Hints
+  <style>
+    @keyframes fireGlow {
+      0% { text-shadow: 0 0 4px #fff, 0 -2px 6px #ffb700, 0 -6px 12px #ff4500, 0 -10px 18px #d00000; }
+      50% { text-shadow: 0 0 6px #fff, 0 -4px 10px #ffd700, 0 -9px 16px #ff3300, 0 -14px 24px #990000; }
+      100% { text-shadow: 0 0 4px #fff, 0 -2px 6px #ffb700, 0 -6px 12px #ff4500, 0 -10px 18px #d00000; }
+    }
+  </style>
+
+  <!-- FIRE TITLE -->
+  <h2 style="margin-top: 0; color: #fff; text-align: center; border-bottom: 2px solid rgba(239, 68, 68, 0.5); padding-bottom: 14px; font-size: 1.8em; letter-spacing: 2px; text-transform: uppercase; animation: fireGlow 2s infinite alternate;">
+    🔥 GCC02.de - Hints 🔥
   </h2>
 
   <!-- INDOOR SECTION -->
-  <div style="margin-bottom: 20px; background: rgba(255,255,255,0.03); border-left: 4px solid #6366f1; border-radius: 0 8px 8px 0; padding: 12px 16px;">
-    <strong style="color: #818cf8; font-size: 1.1em; letter-spacing: 0.5px;">INDOOR</strong>
+  <div style="margin-bottom: 20px; background: rgba(185, 28, 28, 0.12); border-left: 4px solid #ef4444; border-radius: 0 8px 8px 0; padding: 12px 16px;">
+    <strong style="color: #fca5a5; font-size: 1.1em; letter-spacing: 0.5px;">INDOOR</strong>
     <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
       <li style="margin-bottom: 6px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #818cf8; font-weight: bold;">†</span>
+        <span style="position: absolute; left: 0; color: #ef4444; font-weight: bold;">†</span>
         Der gnadenlose Certitudes-Checker verlangt, dass alles – ohne Gnade und ohne ein einziges winziges Leerzeichen – in einem einzigen Wort zusammengeschrieben wird!
       </li>
     </ul>
   </div>
 
   <!-- OUTDOOR SECTION -->
-  <div style="margin-bottom: 20px; background: rgba(255,255,255,0.03); border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px;">
-    <strong style="color: #34d399; font-size: 1.1em; letter-spacing: 0.5px;">OUTDOOR</strong>
+  <div style="margin-bottom: 20px; background: rgba(185, 28, 28, 0.12); border-left: 4px solid #f97316; border-radius: 0 8px 8px 0; padding: 12px 16px;">
+    <strong style="color: #fdba74; font-size: 1.1em; letter-spacing: 0.5px;">OUTDOOR</strong>
     <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
       <li style="margin-bottom: 8px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #34d399; font-weight: bold;">†</span>
+        <span style="position: absolute; left: 0; color: #f97316; font-weight: bold;">†</span>
         Mache den Outdoor-Teil nur bei Tageslicht, ein zusätzliches Licht schadet nicht!
       </li>
       <li style="margin-bottom: 8px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #34d399; font-weight: bold;">†</span>
+        <span style="position: absolute; left: 0; color: #f97316; font-weight: bold;">†</span>
         Achte beim Bergen der Dose wie ein Luchs darauf, dass sie nicht verloren geht.
       </li>
-      <li style="margin-bottom: 6px; position: relative; padding-left: 22px; color: #fbbf24;">
-        <span style="position: absolute; left: 0; color: #fbbf24; font-weight: bold;">†</span>
+      <li style="margin-bottom: 6px; position: relative; padding-left: 22px; color: #fca5a5;">
+        <span style="position: absolute; left: 0; color: #ef4444; font-weight: bold;">†</span>
         Die Terrain-Wertung steigt bei schlechtem Schuhwerk und widrigem Wetter um jeweils unbarmherzige 0,5 an!
       </li>
     </ul>
   </div>
 
   <!-- EQUIPMENT SECTION -->
-  <div style="margin-bottom: 20px; background: rgba(255,255,255,0.03); border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 12px 16px;">
-    <strong style="color: #fbbf24; font-size: 1.1em; letter-spacing: 0.5px;">EQUIPMENT</strong>
+  <div style="margin-bottom: 20px; background: rgba(185, 28, 28, 0.12); border-left: 4px solid #eab308; border-radius: 0 8px 8px 0; padding: 12px 16px;">
+    <strong style="color: #fde047; font-size: 1.1em; letter-spacing: 0.5px;">EQUIPMENT</strong>
     <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
       <li style="margin-bottom: 8px; position: relative; padding-left: 22px;">
-        <span style="position: absolute; left: 0; color: #fbbf24; font-weight: bold;">†</span>
+        <span style="position: absolute; left: 0; color: #eab308; font-weight: bold;">†</span>
         Festes Schuhwerk
       </li>
-      <li style="margin-bottom: 6px; position: relative; padding-left: 22px; background: rgba(245, 158, 11, 0.15); padding-top: 4px; padding-bottom: 4px; border-radius: 4px;">
-        <span style="position: absolute; left: 6px; color: #fbbf24; font-weight: bold;">†</span>
+      <li style="margin-bottom: 6px; position: relative; padding-left: 22px; background: rgba(239, 68, 68, 0.25); padding-top: 4px; padding-bottom: 4px; border-radius: 4px; border: 1px solid rgba(239, 68, 68, 0.4);">
+        <span style="position: absolute; left: 6px; color: #fde047; font-weight: bold;">†</span>
         <b style="color: #fff;">Die zuvor herausgefundene dreistellige Zahlenkombination unbedingt mitnehmen!</b>
       </li>
     </ul>
   </div>
 
   <!-- FOOTER -->
-  <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px dashed #374151; font-style: italic; color: #9ca3af; font-size: 0.9em;">
+  <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px dashed rgba(239, 68, 68, 0.4); font-style: italic; color: #fca5a5; font-size: 0.9em;">
     † Weitere spannende Hints folgen...
   </div>
 
 </div>
-
 </body>
 </html>
